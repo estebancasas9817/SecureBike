@@ -11,6 +11,11 @@
     <string name="editText4">E-mail</string>
     <string name="editText5">Celular</string>
     <string name="editText6">Contraseña</string>
+    <string name="search">¿A dónde vamos?</string>
+    <string name="b1">Configuración</string>
+    <string name="b2">Home</string>
+    <string name="b3">Contactos</string>
+
     <string-array name="contactos">
         <item>Editar contacto SOS</item>
         <item>Alejandra Sandoval</item>
