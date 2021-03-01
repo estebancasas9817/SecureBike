@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -24,6 +26,13 @@ public class Home extends AppCompatActivity {
                 startActivity(intentWeb);
             }
         });
+    }
 
+    public void contactos(View v)
+    {
+        Toast.makeText(v.getContext(), "Tus contactos", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(v.getContext(), Contactos.class);
+        intent.putExtra("login", "Hola_4");
+        startActivity(intent);
     }
 }

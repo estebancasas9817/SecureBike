@@ -22,6 +22,15 @@
         <item>Pedro Guerrero</item>
         <item>Esteban Casas</item>
         <item>Gabriel Forero</item>
+        <item>Goku</item>
+        <item>Kakaroto</item>
+        <item>Vegeta</item>
+        <item>Napoleon</item>
+        <item>Atila</item>
+        <item>German Garmendia</item>
+        <item>Roxana Medina</item>
+        <item>Orlando Florida</item>
+        <item>Wall Disney</item>
     </string-array>
     <string-array name="Direcciones">
         <item>Editar direccion</item>
@@ -29,5 +38,6 @@
         <item>Universidad</item>
         <item>Trabajo</item>
     </string-array>
+
 
 </resources>
