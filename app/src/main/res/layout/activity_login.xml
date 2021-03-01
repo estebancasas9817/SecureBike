@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".Login">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/Titulo"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Bienvenido"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textScaleX="4"
+        >
+    </TextView>
+
+    <ImageView
+        android:id="@+id/Imagen"
+        android:src="@drawable/bicicleta_2"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_below="@id/Titulo"
+        >
+    </ImageView>
+
+    <EditText
+        android:id="@+id/Usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Imagen"
+        android:text="Usuario"
+        >
+    </EditText>
+
+    <EditText
+        android:id="@+id/Correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_below="@id/Usuario"
+        android:text="E-mail"
+        >
+    </EditText>
+
+    <EditText
+        android:id="@+id/Contras"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_below="@id/Correo"
+        android:text="Contraseña"
+        >
+    </EditText>
+
+    <TextView
+        android:id="@+id/SeTeOlvidoLaContraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿Se te olvido la contraseña?"
+        android:layout_below="@id/Contras"
+        android:onClick="seTeOlvidoLaContraseña"
+        >
+    </TextView>
+
+    <Button
+        android:id="@+id/BotonIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar sesion"
+        android:layout_below="@id/SeTeOlvidoLaContraseña"
+        android:onClick="iniciarSesion"
+        >
+    </Button>
+
+    <Button
+        android:id="@+id/BotonRegistrarse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        android:layout_below="@id/BotonIniciarSesion"
+        android:onClick="registrarse"
+        >
+    </Button>
+</RelativeLayout>
