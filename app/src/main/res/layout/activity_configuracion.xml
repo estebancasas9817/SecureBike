@@ -1,150 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".Configuracion">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/degradado"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:text="Configuración"
+            android:textColor="#000"
+            android:textSize="40dp" />
 
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="215dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="520dp"
-        android:entries="@array/Direcciones" />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="480dp"
-        android:hint="@string/textView3"
-        android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="290dp"
-        android:ems="10"
-        android:hint="@string/editText4"
-        android:inputType="textPersonName" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="330dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/editText5" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre Completo">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="630dp"
-        android:hint="@string/button2" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width= "match_parent"
+                    android:layout_height= "wrap_content"
+                    android:drawableLeft="@drawable/ic_usuari"
+                    android:drawablePadding="10dp"
+                    android:text="Esteban"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/textView"
-        android:textSize="24sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="110dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
-        android:hint="@string/textView2"
-        android:textSize="18sp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Apellido">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="130dp"
-        android:ems="10"
-        android:hint="@string/editText"
-        android:inputType="textPersonName" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width= "match_parent"
+                    android:layout_height= "wrap_content"
+                    android:drawableLeft="@drawable/ic_usuari"
+                    android:drawablePadding="10dp"
+                    android:text="Casas"/>
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="170dp"
-        android:ems="10"
-        android:hint="@string/editText2"
-        android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="210dp"
-        android:ems="10"
-        android:hint="@string/editText3"
-        android:inputType="textPersonName" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email">
 
-    <EditText
-        android:id="@+id/editText6"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="250dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/editText6"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width= "match_parent"
+                    android:layout_height= "wrap_content"
+                    android:drawableLeft="@drawable/ic_mail"
+                    android:drawablePadding="10dp"
+                    android:text="esteban@gmail.com"/>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="370dp"
-        android:entries="@array/contactos" />
-</RelativeLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Celular">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width= "match_parent"
+                    android:layout_height= "wrap_content"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawablePadding="10dp"
+                    android:text="3132905689"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Clave">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width= "match_parent"
+                    android:layout_height= "wrap_content"
+                    android:drawableLeft="@drawable/ic_clave"
+                    android:drawablePadding="10dp"
+                    android:text="Contraseña"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre Completo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width= "match_parent"
+                    android:layout_height= "wrap_content"
+                    android:drawableLeft="@drawable/ic_sos"
+                    android:drawablePadding="10dp"
+                    android:text="Esteban"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Editar Direcciones"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/selecionarTextView"
+                android:hint="Seleccione la dirección"
+                android:textColor="#000"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:drawableEnd="@drawable/ic_house"
+                android:background="@android:drawable/editbox_background"
+                app:drawableRightCompat="@drawable/ic_house"
+                android:drawableRight="@drawable/ic_house" />
+
+            <Button
+                android:background="#55c57a"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:text="Guardar Cambios" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
