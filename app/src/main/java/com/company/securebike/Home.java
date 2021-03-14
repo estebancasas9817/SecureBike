@@ -35,4 +35,12 @@ public class Home extends AppCompatActivity {
         intent.putExtra("login", "Hola_4");
         startActivity(intent);
     }
+
+    public void agregarBicicleta(View v)
+    {
+        Toast.makeText(v.getContext(), "Pasando a agregar bicicleta", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(v.getContext(), AgregarBicicleta.class);
+        intent.putExtra("home", "Hola_5");
+        startActivity(intent);
+    }
 }
