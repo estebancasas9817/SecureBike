@@ -37,18 +37,18 @@
     <ListView
         android:id="@+id/Lista"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="550dp"
         android:layout_below="@id/Texto"
-        android:entries="@array/contactos"
-        />
-    <!--
-    <Spinner
-        android:id="@+id/Contactos"
-        android:layout_width="280dp"
+        android:entries="@array/contactos" />
+
+    <Button
+        android:id="@+id/bInvitar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Enunciado"
-        android:entries="@array/Contactos"
+        android:text="Invitar"
+        android:layout_below="@id/Lista"
+        android:layout_centerInParent="true"
         />
-    -->
+
 
 </RelativeLayout>
