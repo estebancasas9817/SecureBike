@@ -21,15 +21,29 @@
         app:srcCompat="@drawable/mapa" />
 
     <SearchView
-        android:layout_width="331dp"
+        android:id="@+id/buscador"
+        android:layout_width="290dp"
         android:layout_height="68dp"
+        android:hint="@string/search"
         app:layout_constraintBottom_toTopOf="@+id/mapa"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.525"
-        android:hint="@string/search"
+
+        />
+
+    <Button
+        android:id="@+id/bAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+
+        app:layout_constraintStart_toEndOf="@id/buscador"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/mapa"
+        app:layout_constraintRight_toRightOf="@id/buscador"
         />
 
     <Button
@@ -48,7 +62,7 @@
         android:id="@+id/b2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/b2"
+        android:text="SOS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -61,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/b3"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.84"

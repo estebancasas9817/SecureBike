@@ -17,7 +17,6 @@
     <string name="b3">Contactos</string>
 
     <string-array name="contactos">
-        <item>Editar contacto SOS</item>
         <item>Alejandra Sandoval</item>
         <item>Pedro Guerrero</item>
         <item>Esteban Casas</item>
