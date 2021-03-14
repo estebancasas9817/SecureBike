@@ -31,6 +31,7 @@
         <item>Orlando Florida</item>
         <item>Wall Disney</item>
     </string-array>
+
     <string-array name="Direcciones">
         <item>Editar direccion</item>
         <item>Casa</item>
@@ -38,5 +39,11 @@
         <item>Trabajo</item>
     </string-array>
 
+    <string-array name="Bicicletas">
+        <item>Bicicleta 1</item>
+        <item>Bicicleta 2</item>
+        <item>Bicicleta 3</item>
+        <item>Bicicleta 4</item>
+    </string-array>
 
 </resources>

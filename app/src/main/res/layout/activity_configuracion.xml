@@ -140,12 +140,22 @@
                 app:drawableRightCompat="@drawable/ic_house"
                 android:drawableRight="@drawable/ic_house" />
 
+            <Spinner
+                android:id="@+id/Contactos"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/Bicicletas"
+                />
+
             <Button
                 android:background="#55c57a"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
-                android:text="Guardar Cambios" />
+                android:text="Guardar Cambios"
+
+                />
+
+
         </LinearLayout>
 
     </ScrollView>
