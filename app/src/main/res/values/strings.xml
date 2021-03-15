@@ -15,6 +15,7 @@
     <string name="b1">Configuración</string>
     <string name="b2">Home</string>
     <string name="b3">Contactos</string>
+    <string name="b4">Configurar Bicicletas</string>
 
     <string-array name="contactos">
         <item>Alejandra Sandoval</item>
