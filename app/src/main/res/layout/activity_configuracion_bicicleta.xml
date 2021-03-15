@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfiguracionBicicleta">
+
+    <Spinner
+        android:id="@+id/Bicicletas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/Bicicletas"
+        />
+
+    <Button
+        android:id="@+id/botonCamara"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Camara"
+
+        android:layout_below="@id/Bicicletas"
+        android:layout_alignLeft="@id/Bicicletas"
+        />
+
+    <TextView
+        android:id="@+id/configurarBicicletaLetrero"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textSize="30dp"
+        android:text="Configurar Bicicleta"
+        android:layout_below="@id/Bicicletas"
+        android:layout_alignRight="@id/Bicicletas"
+        />
+
+    <EditText
+        android:id="@+id/Serial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Serial"
+        android:layout_below="@id/configurarBicicletaLetrero"
+        />
+
+    <EditText
+        android:id="@+id/Color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Color"
+        android:layout_below="@id/Serial"
+        />
+
+    <EditText
+        android:id="@+id/Marca"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Marca de bicicleta"
+        android:inputType="textMultiLine"
+        android:layout_below="@id/Color"
+        />
+
+    <EditText
+        android:id="@+id/Matricula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Matricula"
+        android:layout_below="@id/Marca"
+        />
+
+    <EditText
+        android:id="@+id/Talla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Talla"
+        android:layout_below="@id/Matricula"
+        />
+
+    <EditText
+        android:id="@+id/RasgosParticulares"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="Rasgos particulares"
+        android:layout_below="@id/Talla"
+        />
+
+    <Button
+        android:id="@+id/botonGuardarBicicleta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar bicicleta"
+        android:layout_below="@id/RasgosParticulares"
+        />
+
+</RelativeLayout>
