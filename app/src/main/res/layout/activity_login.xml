@@ -19,114 +19,131 @@
         android:textAlignment="center"
         android:gravity="center_horizontal" />
 
-    <ImageView
-        android:layout_marginTop="30dp"
-        android:id="@+id/Imagen"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_below="@id/Titulo"
-        android:src="@drawable/bicicleta_2"
-        >
 
-    </ImageView>
 
-    <EditText
-        android:id="@+id/Usuario"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:textColor="#fff"
-        android:paddingBottom="10dp"
-        android:textColorHint="#fff"
 
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/input_bg"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_below="@id/Imagen"
-        android:hint="Usuario"
-        >
-    </EditText>
+        android:layout_below="@id/Titulo">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/Correo"
-        android:background="@drawable/input_bg"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColorHint="#fff"
-        android:textColor="#fff"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:inputType="textEmailAddress"
-        android:layout_below="@id/Usuario"
-        android:hint="E-mail"
-        >
-    </EditText>
+            <ImageView
+                android:layout_marginTop="30dp"
+                android:id="@+id/Imagen"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_below="@id/Titulo"
+                android:src="@drawable/bicicleta_2"/>
 
-    <EditText
-        android:id="@+id/Contras"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:textColorHint="#fff"
-        android:textColor="#fff"
+            <EditText
+                android:id="@+id/Usuario"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:textColor="#fff"
+                android:paddingBottom="10dp"
+                android:textColorHint="#fff"
 
-        android:paddingBottom="10dp"
-        android:background="@drawable/input_bg"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:inputType="textPassword"
-        android:layout_below="@id/Correo"
-        android:hint="Contraseña"
-        >
-    </EditText>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:hint="Usuario"
+                >
+            </EditText>
 
-    <TextView
-        android:id="@+id/SeTeOlvidoLaContraseña"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:text="¿Se te olvido la contraseña?"
-        android:layout_below="@id/Contras"
-        android:paddingLeft="25dp"
-        android:onClick="seTeOlvidoLaContraseña"
-        >
-    </TextView>
+            <EditText
+                android:id="@+id/Correo"
+                android:background="@drawable/input_bg"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColorHint="#fff"
+                android:textColor="#fff"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:inputType="textEmailAddress"
+                android:layout_below="@id/Usuario"
+                android:hint="E-mail"
+                >
+            </EditText>
 
-    <Button
-        android:id="@+id/BotonIniciarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:text="Iniciar sesion"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/SeTeOlvidoLaContraseña"
-        android:onClick="iniciarSesion"
-        >
-    </Button>
+            <EditText
+                android:id="@+id/Contras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#fff"
+                android:textColor="#fff"
 
-    <Button
-        android:id="@+id/BotonRegistrarse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:text="Registrarse"
-        android:layout_below="@id/BotonIniciarSesion"
-        android:onClick="registrarse"
-        >
-    </Button>
+                android:paddingBottom="10dp"
+                android:background="@drawable/input_bg"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:inputType="textPassword"
+                android:layout_below="@id/Correo"
+                android:hint="Contraseña"
+                >
+            </EditText>
+
+            <TextView
+                android:id="@+id/SeTeOlvidoLaContraseña"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text="¿Se te olvido la contraseña?"
+                android:layout_below="@id/Contras"
+                android:paddingLeft="25dp"
+                android:onClick="seTeOlvidoLaContraseña"
+                >
+            </TextView>
+
+            <Button
+                android:id="@+id/BotonIniciarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:text="Iniciar sesion"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/SeTeOlvidoLaContraseña"
+                android:onClick="iniciarSesion"
+                >
+            </Button>
+
+            <Button
+                android:id="@+id/BotonRegistrarse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_bg"
+                android:text="Registrarse"
+                android:layout_below="@id/BotonIniciarSesion"
+                android:onClick="registrarse"
+                >
+            </Button>
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
 </RelativeLayout>
