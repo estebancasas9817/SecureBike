@@ -28,7 +28,7 @@
         android:id="@+id/configurarBicicletaLetrero"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textSize="30dp"
+        android:textSize="28dp"
         android:text="Configurar Bicicleta"
         android:layout_below="@id/Bicicletas"
         android:layout_alignRight="@id/Bicicletas"
