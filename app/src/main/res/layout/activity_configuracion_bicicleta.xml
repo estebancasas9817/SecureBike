@@ -34,74 +34,88 @@
         android:layout_alignRight="@id/Bicicletas"
         />
 
-    <EditText
-        android:id="@+id/Serial"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Serial"
-        android:layout_below="@id/configurarBicicletaLetrero"
-        />
+        android:layout_below="@id/configurarBicicletaLetrero">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/Color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Color"
-        android:layout_below="@id/Serial"
-        />
 
-    <EditText
-        android:id="@+id/Marca"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Marca de bicicleta"
-        android:inputType="textMultiLine"
-        android:layout_below="@id/Color"
-        />
+            <EditText
+                android:id="@+id/Serial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Serial"
+                />
 
-    <EditText
-        android:id="@+id/Matricula"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Matricula"
-        android:layout_below="@id/Marca"
-        />
+            <EditText
+                android:id="@+id/Color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Color"
 
-    <EditText
-        android:id="@+id/Talla"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Talla"
-        android:layout_below="@id/Matricula"
-        />
+                />
 
-    <EditText
-        android:id="@+id/RasgosParticulares"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:hint="Rasgos particulares"
-        android:layout_below="@id/Talla"
-        />
+            <EditText
+                android:id="@+id/Marca"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Marca de bicicleta"
+                android:inputType="textMultiLine"
 
-    <Button
-        android:id="@+id/botonGuardarBicicleta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guardar bicicleta"
-        android:layout_below="@id/RasgosParticulares"
-        />
+                />
+
+            <EditText
+                android:id="@+id/Matricula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Matricula"
+
+                />
+
+            <EditText
+                android:id="@+id/Talla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Talla"
+
+                />
+
+            <EditText
+                android:id="@+id/RasgosParticulares"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:hint="Rasgos particulares"
+
+                />
+
+            <Button
+                android:id="@+id/botonGuardarBicicleta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guardar bicicleta"
+
+                />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </RelativeLayout>
