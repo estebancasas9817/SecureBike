@@ -34,18 +34,38 @@
 
         />
 
+    <TextView
+        android:id="@+id/selecionarTextView"
+        android:layout_width="319dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="128dp"
+        android:background="@android:drawable/editbox_background"
+        android:drawableEnd="@drawable/ic_house"
+        android:drawableRight="@drawable/ic_house"
+        android:gravity="center_vertical"
+        android:hint="Seleccione la dirección"
+        android:padding="12dp"
+        android:textColor="#000"
+        app:drawableRightCompat="@drawable/ic_house"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/bAgregar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"
+        android:layout_width="66dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="24dp"
 
-        app:layout_constraintStart_toEndOf="@id/buscador"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="24dp"
+        android:onClick="agregarBicicleta"
+        android:text="+"
         app:layout_constraintBottom_toTopOf="@+id/mapa"
         app:layout_constraintRight_toRightOf="@id/buscador"
-        android:onClick="agregarBicicleta"
-        />
+        app:layout_constraintStart_toEndOf="@id/buscador"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.474" />
 
     <Button
         android:id="@+id/b1"
@@ -85,4 +105,15 @@
         app:layout_constraintVertical_bias="0.907"
         android:onClick="contactos"
         />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Agregar Bicicleta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
