@@ -2,7 +2,7 @@ package com.company.securebike.auxiliares;
 
 public class UsuarioAux {
     String usuario, nombre,email;
-    int celular;
+    String celular;
     String clave;
     String direccion;
 
@@ -10,7 +10,7 @@ public class UsuarioAux {
 
     }
 
-    public UsuarioAux(String usuario, String nombre, String email, int celular, String clave, String direccion) {
+    public UsuarioAux(String usuario, String nombre, String email, String celular, String clave, String direccion) {
         this.usuario = usuario;
         this.nombre = nombre;
         this.email = email;
@@ -43,11 +43,11 @@ public class UsuarioAux {
         this.email = email;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 

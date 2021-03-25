@@ -115,26 +115,10 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Dirección">
-
-                <EditText
-                    android:layout_width= "match_parent"
-                    android:layout_height= "wrap_content"
-                    android:drawableLeft="@drawable/ic_sos"
-                    android:drawablePadding="10dp"
-                    android:id="@+id/configuracionDireccion"
-
-                    android:text="Calle 152 #12=45"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Editar Direcciones"
+                android:text="Seleccionar Direcciones"
                 android:textColor="#000"
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"/>
@@ -151,6 +135,40 @@
                 android:background="@android:drawable/editbox_background"
                 app:drawableRightCompat="@drawable/ic_house"
                 android:drawableRight="@drawable/ic_house" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Editar Direcciones"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:layout_width= "match_parent"
+                android:layout_height= "wrap_content"
+                android:drawableLeft="@drawable/ic_edit"
+                android:drawablePadding="10dp"
+                android:id="@+id/editarDireccion"
+
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar Direcciones"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:layout_width= "match_parent"
+                android:layout_height= "wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_add_24"
+                android:drawablePadding="10dp"
+                android:id="@+id/agregarDireccion"
+
+                android:text=""/>
 
             <Button
                 android:background="#55c57a"

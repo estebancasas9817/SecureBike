@@ -61,7 +61,7 @@ public class Registro extends AppCompatActivity {
                 final String dir = direccion.getText().toString();
 
                 if(validarUsuario() && validarNombre() && validarEmail() && validarTel() && validarClave() && validarDireccion()){
-                    UsuarioAux usuarioAux = new UsuarioAux(usuarios,nombres,email,Integer.valueOf(cel),password,dir);
+                    UsuarioAux usuarioAux = new UsuarioAux(usuarios,nombres,email,cel,password,dir);
                     databaseReference.child(usuarios).setValue(usuarioAux);
 
                     firebaseAuth = FirebaseAuth.getInstance();

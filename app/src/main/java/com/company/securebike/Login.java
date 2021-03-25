@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
                                     if (correos.equals(email)){
 
                                         if(claves.equals(password)){
-                                            int cel = snapshot.child(usuario).child("celular").getValue(Integer.class);
+                                            String cel = snapshot.child(usuario).child("celular").getValue(String.class);
                                             String direccion = snapshot.child(usuario).child("direccion").getValue(String.class);
                                             String nombre = snapshot.child(usuario).child("nombre").getValue(String.class);
 

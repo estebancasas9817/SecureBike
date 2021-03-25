@@ -35,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class Configuracion extends AppCompatActivity {
@@ -50,12 +51,14 @@ public class Configuracion extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
 
+    EditText editarDir,agregarDir;
+
 
     String usuario;
      String email;
      String clave;
      String nombre;
-     int cel;
+     String cel;
      String celular;
      String direccion;
 
@@ -65,6 +68,8 @@ public class Configuracion extends AppCompatActivity {
         setContentView(R.layout.activity_configuracion);
 
         seleccionarText = findViewById(R.id.selecionarTextView);
+        editarDir = findViewById(R.id.editarDireccion);
+        agregarDir = findViewById(R.id.agregarDireccion);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Usuarios");
 
@@ -74,8 +79,8 @@ public class Configuracion extends AppCompatActivity {
         email = intent.getStringExtra("email");
         clave = intent.getStringExtra("clave");
         nombre = intent.getStringExtra("nombre");
-        cel = intent.getIntExtra("celular",0);
-        celular = String.valueOf(cel);
+        cel = intent.getStringExtra("celular");
+        celular = cel;
         direccion = intent.getStringExtra("direccion");
 
         setDatos(nombre,usuario,email,clave,direccion,cel);
@@ -85,10 +90,10 @@ public class Configuracion extends AppCompatActivity {
 
         arrayList = new ArrayList<>();
 
-        arrayList.add("calle 152 #12c-30");
-        arrayList.add("calle 149 #27-12");
-        arrayList.add("calle 98 #7-24");
-        arrayList.add("calle 45 #7-13");
+        arrayList.add(direccion);
+//        arrayList.add("calle 149 #27-12");
+//        arrayList.add("calle 98 #7-24");
+//        arrayList.add("calle 45 #7-13");
 
         seleccionarText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +133,7 @@ public class Configuracion extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         seleccionarText.setText(adapter.getItem(position));
+                        editarDir.setText(adapter.getItem(position));
 
                         dialog.dismiss();
                     }
@@ -137,11 +143,10 @@ public class Configuracion extends AppCompatActivity {
         });
     }
 
-    public void setDatos(String nombre,String usuario,String email,String clave,String direccion,int cel){
+    public void setDatos(String nombre,String usuario,String email,String clave,String direccion,String cel){
         configuracionUsuario = findViewById(R.id.configuracionUsuario);
         configuracionNombre = findViewById(R.id.configuracionNombre);
         configuracionCel = findViewById(R.id.configuracionCel);
-        configuracionDireccion = findViewById(R.id.configuracionDireccion);
         configuracionEmail = findViewById(R.id.configuracionEmail);
         configuracionClave = findViewById(R.id.configuracionClave);
 
@@ -151,7 +156,6 @@ public class Configuracion extends AppCompatActivity {
         configuracionEmail.setText(email);
         configuracionClave.setText(clave);
         configuracionCel.setText(String.valueOf(cel));
-        configuracionDireccion.setText(direccion);
 
     }
 
@@ -201,24 +205,57 @@ public class Configuracion extends AppCompatActivity {
     }
 
     private boolean cambioDir() {
+        String direcciones = seleccionarText.getText().toString();
+        String agregar = agregarDir.getText().toString();
+        if(!direcciones.equals(editarDir.getText().toString())){
+            String dir;
+            for (int i = 0; i < arrayList.size(); i++) {
+                dir = arrayList.get(i);
+                if(direcciones == dir) {
+                    if(direcciones == direccion){
+                        String dirFirebase = editarDir.getText().toString();
+                        databaseReference.child(usuario).child("direccion").setValue(dirFirebase);
+                        direccion = dirFirebase;
+                    }
+                    arrayList.remove(i);
+                    arrayList.add(editarDir.getText().toString());
 
-        if(!direccion.equals(configuracionDireccion.getText().toString())){
-            databaseReference.child(usuario).child("direccion").setValue(configuracionDireccion.getText().toString());
-            direccion = configuracionDireccion.getText().toString();
+
+
+                }
+
+            }
+
+            return true;
+        }
+        if(!agregar.isEmpty()){
+            arrayList.add(agregarDir.getText().toString());
+            String espacios = "";
+            agregarDir.setText(espacios);
             return true;
         }
         else{
             return false;
         }
+
+//        if(!direccion.equals(configuracionDireccion.getText().toString())){
+//            databaseReference.child(usuario).child("direccion").setValue(configuracionDireccion.getText().toString());
+//            direccion = configuracionDireccion.getText().toString();
+//            Toast.makeText(Configuracion.this,":"+arrayList.size(),Toast.LENGTH_LONG).show();
+//
+//
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
     }
 
     private boolean cambioCel() {
 
         if(!celular.equals(configuracionCel.getText().toString())){
             String celu = configuracionCel.getText().toString();
-            int phone = Integer.valueOf(celu);
-            Toast.makeText(Configuracion.this,"cel:"+celu,Toast.LENGTH_LONG).show();
-            databaseReference.child(usuario).child("celular").setValue(phone);
+            databaseReference.child(usuario).child("celular").setValue(celu);
             celular = configuracionCel.getText().toString();
             return true;
         }
