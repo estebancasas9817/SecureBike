@@ -35,16 +35,19 @@
             android:padding="20dp"
             android:orientation="vertical">
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre Completo">
+                android:hint="Usuario">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:layout_width= "match_parent"
                     android:layout_height= "wrap_content"
                     android:drawableLeft="@drawable/ic_usuari"
                     android:drawablePadding="10dp"
+                    android:id="@+id/configuracionUsuario"
+                    android:enabled="false"
                     android:text="Esteban"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -52,14 +55,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellido">
+                android:hint="Nombre Completo">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:layout_width= "match_parent"
                     android:layout_height= "wrap_content"
                     android:drawableLeft="@drawable/ic_usuari"
                     android:drawablePadding="10dp"
-                    android:text="Casas"/>
+                    android:id="@+id/configuracionNombre"
+                    android:text="Esteban"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,11 +72,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Email">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:layout_width= "match_parent"
                     android:layout_height= "wrap_content"
                     android:drawableLeft="@drawable/ic_mail"
                     android:drawablePadding="10dp"
+                    android:id="@+id/configuracionEmail"
+                    android:inputType="textEmailAddress"
                     android:text="esteban@gmail.com"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -82,11 +88,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Celular">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:layout_width= "match_parent"
                     android:layout_height= "wrap_content"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="10dp"
+                    android:id="@+id/configuracionCel"
+                    android:inputType="number"
                     android:text="3132905689"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -96,9 +104,11 @@
                 android:layout_height="wrap_content"
                 android:hint="Clave">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:layout_width= "match_parent"
                     android:layout_height= "wrap_content"
+                    android:id="@+id/configuracionClave"
+
                     android:drawableLeft="@drawable/ic_clave"
                     android:drawablePadding="10dp"
                     android:text="Contraseña"/>
@@ -108,14 +118,16 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre Completo">
+                android:hint="Dirección">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:layout_width= "match_parent"
                     android:layout_height= "wrap_content"
                     android:drawableLeft="@drawable/ic_sos"
                     android:drawablePadding="10dp"
-                    android:text="Esteban"/>
+                    android:id="@+id/configuracionDireccion"
+
+                    android:text="Calle 152 #12=45"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +156,8 @@
                 android:background="#55c57a"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="Guardar Cambios"
+                android:text="Actualizar Cambios"
+                android:onClick="actualizar"
 
                 />
 

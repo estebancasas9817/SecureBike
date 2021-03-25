@@ -15,6 +15,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -23,13 +29,17 @@ public class Login extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     Button BotonIniciarSesion;
-
+    DatabaseReference databaseReference;
+    FirebaseDatabase firebaseDatabase;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Usuarios");
 
         Usuario = findViewById(R.id.Usuario);
         correo = findViewById(R.id.Correo);
@@ -39,9 +49,9 @@ public class Login extends AppCompatActivity {
             BotonIniciarSesion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String usuario = Usuario.getText().toString();
-                    String email = correo.getText().toString();
-                    String password = clave.getText().toString();
+                    final String usuario = Usuario.getText().toString();
+                    final String email = correo.getText().toString();
+                    final String password = clave.getText().toString();
 
                     if(usuario.isEmpty()){
                         mostrarError(Usuario,"Debes llenar este campo");
@@ -55,25 +65,55 @@ public class Login extends AppCompatActivity {
                     }
                     else{
 
+                        Query chequearUsuario =databaseReference.orderByChild("usuario").equalTo(usuario);
 
 
-                        firebaseAuth = FirebaseAuth.getInstance();
 
-                        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(Login.this, "Bienvenido a Home", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(Login.this, Home.class);
-                                    startActivity(intent);
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    String claves = snapshot.child(usuario).child("clave").getValue(String.class);
+                                    String correos = snapshot.child(usuario).child("email").getValue(String.class);
+                                    if (correos.equals(email)){
+
+                                        if(claves.equals(password)){
+                                            int cel = snapshot.child(usuario).child("celular").getValue(Integer.class);
+                                            String direccion = snapshot.child(usuario).child("direccion").getValue(String.class);
+                                            String nombre = snapshot.child(usuario).child("nombre").getValue(String.class);
+
+                                            Intent intent = new Intent(Login.this,Configuracion.class);
+                                            intent.putExtra("usuario",usuario);
+                                            intent.putExtra("nombre",nombre);
+                                            intent.putExtra("direccion",direccion);
+                                            intent.putExtra("email",email);
+                                            intent.putExtra("clave",password);
+                                            intent.putExtra("celular",cel);
+//
+                                            Toast.makeText(Login.this, "Bienvenido de vuelta", Toast.LENGTH_SHORT).show();
+                                            startActivity(intent);
+
+
+                                        }
+                                        else{
+
+                                            clave.setError("Contraseña incorrecta");
+                                        }
+
+                                    } else{
+                                        correo.setError("Correo incorrecto");
+                                    }
                                 }
                                 else{
-
-                                    Toast.makeText(Login.this,task.getException().toString(),Toast.LENGTH_LONG).show();
+                                    Usuario.setError("El usuario ingresado no existe");
                                 }
                             }
-                        });
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
 
 

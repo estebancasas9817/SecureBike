@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,12 +53,12 @@ public class Registro extends AppCompatActivity {
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference = firebaseDatabase.getReference("Usuarios");
 
-                String usuarios = usuario.getText().toString();
-                String nombres = nombre.getText().toString();
-                String email = mail.getText().toString();
-                String cel = celular.getText().toString();
-                String password = clave.getText().toString();
-                String dir = direccion.getText().toString();
+                final String usuarios = usuario.getText().toString();
+                final String nombres = nombre.getText().toString();
+                final String email = mail.getText().toString();
+                final String cel = celular.getText().toString();
+                final String password = clave.getText().toString();
+                final String dir = direccion.getText().toString();
 
                 if(validarUsuario() && validarNombre() && validarEmail() && validarTel() && validarClave() && validarDireccion()){
                     UsuarioAux usuarioAux = new UsuarioAux(usuarios,nombres,email,Integer.valueOf(cel),password,dir);
@@ -70,9 +71,14 @@ public class Registro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(Registro.this,"Usuario Registrado.....",Toast.LENGTH_LONG).show();
-
-                                Intent i = new Intent(Registro.this,Home.class);
-                                startActivity(i);
+                                Intent intent = new Intent(Registro.this,Home.class);
+                                intent.putExtra("usuario",usuarios);
+                                intent.putExtra("nombre",nombres);
+                                intent.putExtra("direccion",dir);
+                                intent.putExtra("email",email);
+                                intent.putExtra("clave",password);
+                                intent.putExtra("celular",cel);
+                                startActivity(intent);
 
                             }
                             else{

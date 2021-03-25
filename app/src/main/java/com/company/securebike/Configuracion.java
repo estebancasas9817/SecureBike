@@ -1,5 +1,6 @@
 package com.company.securebike;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -9,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +20,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class Configuracion extends AppCompatActivity {
@@ -26,12 +43,45 @@ public class Configuracion extends AppCompatActivity {
     ArrayList<String> arrayList;
     Dialog dialog;
 
+    EditText configuracionUsuario,configuracionNombre,configuracionCel,configuracionDireccion,configuracionEmail,configuracionClave;
+
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+
+
+    String usuario;
+     String email;
+     String clave;
+     String nombre;
+     int cel;
+     String celular;
+     String direccion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
 
         seleccionarText = findViewById(R.id.selecionarTextView);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Usuarios");
+
+        Intent intent = getIntent();
+
+        usuario = intent.getStringExtra("usuario");
+        email = intent.getStringExtra("email");
+        clave = intent.getStringExtra("clave");
+        nombre = intent.getStringExtra("nombre");
+        cel = intent.getIntExtra("celular",0);
+        celular = String.valueOf(cel);
+        direccion = intent.getStringExtra("direccion");
+
+        setDatos(nombre,usuario,email,clave,direccion,cel);
+
+
+
 
         arrayList = new ArrayList<>();
 
@@ -85,5 +135,153 @@ public class Configuracion extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void setDatos(String nombre,String usuario,String email,String clave,String direccion,int cel){
+        configuracionUsuario = findViewById(R.id.configuracionUsuario);
+        configuracionNombre = findViewById(R.id.configuracionNombre);
+        configuracionCel = findViewById(R.id.configuracionCel);
+        configuracionDireccion = findViewById(R.id.configuracionDireccion);
+        configuracionEmail = findViewById(R.id.configuracionEmail);
+        configuracionClave = findViewById(R.id.configuracionClave);
+
+
+        configuracionNombre.setText(nombre);
+        configuracionUsuario.setText(usuario);
+        configuracionEmail.setText(email);
+        configuracionClave.setText(clave);
+        configuracionCel.setText(String.valueOf(cel));
+        configuracionDireccion.setText(direccion);
+
+    }
+
+
+    public void actualizar(View view){
+        if (cambioClave() || cambioNombre() || cambioUsuario() || cambioCel() || cambioDir() || cambioEmail()){
+            Toast.makeText(Configuracion.this,"Cambios guardados.....",Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(Configuracion.this,"Los datos son los mismos.....",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean cambioEmail() {
+
+        if(!email.equals(configuracionEmail.getText().toString())){
+            databaseReference.child(usuario).child("email").setValue(configuracionEmail.getText().toString());
+
+            firebaseAuth = FirebaseAuth.getInstance();
+
+            final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            AuthCredential credential = EmailAuthProvider
+                    .getCredential(email, clave);
+
+            firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        firebaseUser.updateEmail(configuracionEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            email = configuracionEmail.getText().toString();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean cambioDir() {
+
+        if(!direccion.equals(configuracionDireccion.getText().toString())){
+            databaseReference.child(usuario).child("direccion").setValue(configuracionDireccion.getText().toString());
+            direccion = configuracionDireccion.getText().toString();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean cambioCel() {
+
+        if(!celular.equals(configuracionCel.getText().toString())){
+            String celu = configuracionCel.getText().toString();
+            int phone = Integer.valueOf(celu);
+            Toast.makeText(Configuracion.this,"cel:"+celu,Toast.LENGTH_LONG).show();
+            databaseReference.child(usuario).child("celular").setValue(phone);
+            celular = configuracionCel.getText().toString();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean cambioUsuario() {
+
+        if(!usuario.equals(configuracionUsuario.getText().toString())){
+            databaseReference.child(usuario).child("usuario").setValue(configuracionUsuario.getText().toString());
+            usuario = configuracionUsuario.getText().toString();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean cambioNombre() {
+
+        if(!nombre.equals(configuracionNombre.getText().toString())){
+            databaseReference.child(usuario).child("nombre").setValue(configuracionNombre.getText().toString());
+            nombre = configuracionNombre.getText().toString();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean cambioClave() {
+        if(!clave.equals(configuracionClave.getText().toString())){
+            databaseReference.child(usuario).child("clave").setValue(configuracionClave.getText().toString());
+            firebaseAuth = FirebaseAuth.getInstance();
+
+            final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            AuthCredential credential = EmailAuthProvider
+                    .getCredential(email, clave);
+
+            firebaseUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        firebaseUser.updatePassword(configuracionClave.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+
+            clave = configuracionClave.getText().toString();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
