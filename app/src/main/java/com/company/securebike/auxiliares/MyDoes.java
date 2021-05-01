@@ -11,13 +11,13 @@ public class MyDoes {
     String usuario;
     String nombre;
     String rasgos;
-//    Uri foto;
+    String foto;
 
 
     public MyDoes() {
     }
 
-    public MyDoes(String color, String marca, String matricula, String keydoes, String usuario, String nombre, String rasgos) {
+    public MyDoes(String color, String marca, String matricula, String keydoes, String usuario, String nombre, String rasgos,String foto) {
         this.color = color;
         this.marca = marca;
         this.matricula = matricula;
@@ -25,6 +25,15 @@ public class MyDoes {
         this.usuario = usuario;
         this.nombre = nombre;
         this.rasgos = rasgos;
+        this.foto = foto;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public void setMarca(String marca) {
