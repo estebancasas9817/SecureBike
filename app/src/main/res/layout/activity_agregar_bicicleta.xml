@@ -1,108 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F4F4"
     tools:context=".AgregarBicicleta">
 
-    <Button
-        android:id="@+id/botonCamara"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Camara"
-        />
 
-    <TextView
-        android:id="@+id/AgregarBicicletaLetrero"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:textSize="35dp"
-        android:text="Agregar Bicicleta"
-        android:layout_marginLeft="100dp"
-        />
-
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:background="@drawable/degradado"
+        android:layout_height="198dp">
+
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/Serial"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Serial"
-                android:layout_below="@id/AgregarBicicletaLetrero"
-                />
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/Color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Color"
-                android:layout_below="@id/Serial"
-                />
+                <TextView
+                    android:id="@+id/titlepage"
+                    android:layout_marginTop="20dp"
+                    android:textSize="32sp"
+                    android:textColor="#FFF"
+                    android:text="Mis Bicletas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/Marca"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="Marca de bicicleta"
-                android:inputType="textMultiLine"
-                android:layout_below="@id/Color"
-                />
+                <TextView
+                    android:id="@+id/subtitlepage"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="8dp"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/Matricula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Matricula"
-                android:layout_below="@id/Marca"
-                />
-
-            <EditText
-                android:id="@+id/Talla"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Talla"
-                android:layout_below="@id/Matricula"
-                />
-
-            <EditText
-                android:id="@+id/RasgosParticulares"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:hint="Rasgos particulares"
-                android:layout_below="@id/Talla"
-                />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/botonGuardarBicicleta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Guardar bicicleta"
-                android:layout_below="@id/RasgosParticulares"
-                />
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="60dp"
+                android:id="@+id/btnAddNew"
+                android:text="+"
+                android:background="@drawable/bgbtnnew"
+                android:textSize="38sp"
+                android:textColor="#FFF"
+                android:textAlignment="center"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:gravity="center_horizontal" />
 
         </LinearLayout>
-    </ScrollView>
+
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:background="#131E69"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
 
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ourdoes"
+        android:layout_width="match_parent"
+        android:layout_marginTop="-60dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/endpage"
+        android:textSize="16sp"
+        android:textColor="#9A9A9A"
+        android:layout_marginTop="20dp"
+        android:text="No More Does"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" />
+
+
+</LinearLayout>

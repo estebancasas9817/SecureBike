@@ -71,7 +71,7 @@ public class Registro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(Registro.this,"Usuario Registrado.....",Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Registro.this,Home.class);
+                                Intent intent = new Intent(Registro.this,AgregarBicicleta.class);
                                 intent.putExtra("usuario",usuarios);
                                 intent.putExtra("nombre",nombres);
                                 intent.putExtra("direccion",dir);
