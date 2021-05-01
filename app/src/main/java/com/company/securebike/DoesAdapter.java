@@ -45,6 +45,7 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder>{
         final String getUsuario = myDoes.get(i).getUsuario();
         final String getNombre = myDoes.get(i).getNombre();
         final String getRasgos = myDoes.get(i).getRasgos();
+        final String getImagen = myDoes.get(i).getFoto();
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +58,7 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder>{
                 aa.putExtra("usuario",getUsuario);
                 aa.putExtra("nombre",getNombre);
                 aa.putExtra("rasgos",getRasgos);
+                aa.putExtra("foto",getImagen);
                 context.startActivity(aa);
             }
         });

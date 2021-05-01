@@ -151,7 +151,7 @@ public class NewTaskAct extends AppCompatActivity {
 
     private void AgregarFirebase(final String titulo, final String descrip, final String fechas, final String key, final String username, final String nombre, final String rasgos, Uri uri){
 
-        final StorageReference archivo = storageReference.child(System.currentTimeMillis() + "." + getFileExt(uri));
+        final StorageReference archivo = storageReference.child(username).child("Does"+ doesNum);
 //        MyDoes myDoesAux = new MyDoes(titulo,descrip,fechas,key,username,nombre,rasgos,uri.toString());
 //
 //        reference.child("Does" + doesNum).setValue(myDoesAux);
