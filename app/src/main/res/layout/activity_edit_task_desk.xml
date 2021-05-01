@@ -150,13 +150,13 @@
                 android:id="@+id/addTalla"
                 android:textSize="18sp"
                 android:textColor="#7BE425"
-                android:text="Talla"
+                android:text="Nombre"
                 android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/editarTalla"
+                android:id="@+id/editarNombre"
                 android:inputType="text"
                 android:background="@drawable/bginputtask"
                 android:paddingLeft="12dp"

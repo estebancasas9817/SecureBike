@@ -23,7 +23,7 @@ import java.util.Random;
 public class NewTaskAct extends AppCompatActivity {
 
     TextView titlepage, addtitle, adddesc, adddate;
-    EditText titledoes, descdoes, datedoes,rasgosDoes,tallaDoes;
+    EditText titledoes, descdoes, datedoes,rasgosDoes,nombreDoes;
     Button btnSaveTask, btnCancel;
     DatabaseReference reference;
     Integer doesNum = new Random().nextInt();
@@ -41,7 +41,7 @@ public class NewTaskAct extends AppCompatActivity {
         adddesc = findViewById(R.id.adddesc);
         adddate = findViewById(R.id.adddate);
         rasgosDoes = findViewById(R.id.rasgosDoes);
-        tallaDoes = findViewById(R.id.tallaDoes);
+        nombreDoes = findViewById(R.id.nombreDoes);
 
         titledoes = findViewById(R.id.titledoes);
         descdoes = findViewById(R.id.descdoes);
@@ -66,9 +66,9 @@ public class NewTaskAct extends AppCompatActivity {
                 String fechas = datedoes.getText().toString();
                 String key = keydoes;
                 String username = usuario;
-                String talla = tallaDoes.getText().toString();
+                String nombre = nombreDoes.getText().toString();
                 String rasgos = rasgosDoes.getText().toString();
-                MyDoes myDoesAux = new MyDoes(titulo,descrip,fechas,key,username,talla,rasgos);
+                MyDoes myDoesAux = new MyDoes(titulo,descrip,fechas,key,username,nombre,rasgos);
 
                 reference.child("Does" + doesNum).setValue(myDoesAux);
 
@@ -80,6 +80,15 @@ public class NewTaskAct extends AppCompatActivity {
             }
         });
 
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent devolver = new Intent(NewTaskAct.this,AgregarBicicleta.class);
+                devolver.putExtra("usuario",usuario);
+                startActivity(devolver);
+            }
+        });
 
 
     }

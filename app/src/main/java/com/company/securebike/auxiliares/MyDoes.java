@@ -1,5 +1,7 @@
 package com.company.securebike.auxiliares;
 
+import android.net.Uri;
+
 public class MyDoes {
 
     String color;
@@ -7,20 +9,21 @@ public class MyDoes {
     String matricula;
     String keydoes;
     String usuario;
-    String talla;
+    String nombre;
     String rasgos;
+//    Uri foto;
 
 
     public MyDoes() {
     }
 
-    public MyDoes(String color, String marca, String matricula, String keydoes, String usuario, String talla, String rasgos) {
+    public MyDoes(String color, String marca, String matricula, String keydoes, String usuario, String nombre, String rasgos) {
         this.color = color;
         this.marca = marca;
         this.matricula = matricula;
         this.keydoes = keydoes;
         this.usuario = usuario;
-        this.talla = talla;
+        this.nombre = nombre;
         this.rasgos = rasgos;
     }
 
@@ -28,12 +31,12 @@ public class MyDoes {
         this.marca = marca;
     }
 
-    public String getTalla() {
-        return talla;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTalla(String talla) {
-        this.talla = talla;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getRasgos() {

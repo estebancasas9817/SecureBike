@@ -35,7 +35,7 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, int i) {
         myViewHolder.titledoes.setText(myDoes.get(i).getColor());
-        myViewHolder.descdoes.setText(myDoes.get(i).getMarca());
+        myViewHolder.nombre.setText(myDoes.get(i).getNombre());
         myViewHolder.datedoes.setText(myDoes.get(i).getMatricula());
 
         final String getTitleDoes = myDoes.get(i).getColor();
@@ -43,7 +43,7 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder>{
         final String getDateDoes = myDoes.get(i).getMatricula();
         final String getKeyDoes = myDoes.get(i).getKeydoes();
         final String getUsuario = myDoes.get(i).getUsuario();
-        final String getTalla = myDoes.get(i).getTalla();
+        final String getNombre = myDoes.get(i).getNombre();
         final String getRasgos = myDoes.get(i).getRasgos();
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +55,7 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder>{
                 aa.putExtra("datedoes", getDateDoes);
                 aa.putExtra("keydoes", getKeyDoes);
                 aa.putExtra("usuario",getUsuario);
-                aa.putExtra("talla",getTalla);
+                aa.putExtra("nombre",getNombre);
                 aa.putExtra("rasgos",getRasgos);
                 context.startActivity(aa);
             }
@@ -69,12 +69,12 @@ public class DoesAdapter extends RecyclerView.Adapter<DoesAdapter.MyViewHolder>{
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titledoes, descdoes, datedoes, keydoes;
+        TextView titledoes, nombre, datedoes, keydoes;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titledoes = (TextView) itemView.findViewById(R.id.titledoes);
-            descdoes = (TextView) itemView.findViewById(R.id.descdoes);
+            nombre = (TextView) itemView.findViewById(R.id.nombre);
             datedoes = (TextView) itemView.findViewById(R.id.datedoes);
         }
     }

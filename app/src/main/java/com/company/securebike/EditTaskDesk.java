@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditTaskDesk extends AppCompatActivity {
 
-    EditText titleDoes, descDoes, dateDoes,editarTalla,editarRasgos;
+    EditText titleDoes, descDoes, dateDoes,editarNombre,editarRasgos;
     Button btnSaveUpdate, btnDelete;
     DatabaseReference reference;
     String usuario;
@@ -30,7 +30,7 @@ public class EditTaskDesk extends AppCompatActivity {
         setContentView(R.layout.activity_edit_task_desk);
         titleDoes = findViewById(R.id.titleDoes);
         descDoes = findViewById(R.id.descDoes);
-        editarTalla = findViewById(R.id.editarTalla);
+        editarNombre = findViewById(R.id.editarNombre);
         dateDoes = findViewById(R.id.dateDoes);
         editarRasgos = findViewById(R.id.editarRasgos);
         btnSaveUpdate = findViewById(R.id.btnSaveUpdate);
@@ -42,7 +42,7 @@ public class EditTaskDesk extends AppCompatActivity {
         titleDoes.setText(getIntent().getStringExtra("titledoes"));
         descDoes.setText(getIntent().getStringExtra("descdoes"));
         dateDoes.setText(getIntent().getStringExtra("datedoes"));
-        editarTalla.setText(getIntent().getStringExtra("talla"));
+        editarNombre.setText(getIntent().getStringExtra("nombre"));
         editarRasgos.setText(getIntent().getStringExtra("rasgos"));
 
         final String keykeyDoes = getIntent().getStringExtra("keydoes");
@@ -63,7 +63,7 @@ public class EditTaskDesk extends AppCompatActivity {
                 reference.child("Does" + keykeyDoes).child("marca").setValue(descDoes.getText().toString());
                 reference.child("Does" + keykeyDoes).child("matricula").setValue(dateDoes.getText().toString());
                 reference.child("Does" + keykeyDoes).child("keydoes").setValue(keykeyDoes);
-                reference.child("Does" + keykeyDoes).child("talla").setValue(editarTalla.getText().toString());
+                reference.child("Does" + keykeyDoes).child("nombre").setValue(editarNombre.getText().toString());
                 reference.child("Does" + keykeyDoes).child("rasgos").setValue(editarRasgos.getText().toString());
                 Intent a = new Intent(EditTaskDesk.this,AgregarBicicleta.class);
                 a.putExtra("usuario",usuario);
