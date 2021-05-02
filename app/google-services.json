@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "1085084160175",
+    "firebase_url": "https://bike-dc914-default-rtdb.firebaseio.com",
     "project_id": "bike-dc914",
     "storage_bucket": "bike-dc914.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1085084160175:android:46c8054ce2cdada3ac045a",
+        "mobilesdk_app_id": "1:1085084160175:android:fda11e291a35bc54ac045a",
         "android_client_info": {
           "package_name": "com.company.securebike"
         }
