@@ -16,6 +16,7 @@
     <string name="b2">Home</string>
     <string name="b3">Contactos</string>
     <string name="b4">Configurar Bicicletas</string>
+    <string name="hintAddress">Ingresar Dirección</string>
 
     <string-array name="contactos">
         <item>Alejandra Sandoval</item>
@@ -55,5 +56,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
