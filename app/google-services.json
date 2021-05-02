@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1085084160175",
+    "project_id": "bike-dc914",
+    "storage_bucket": "bike-dc914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085084160175:android:46c8054ce2cdada3ac045a",
+        "android_client_info": {
+          "package_name": "com.company.securebike"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085084160175-ub7s8dlds9qoaubcpk1qjskapulp39uc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmL2etCQGNOQFTqVvpZWOFOxZ30O50V8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085084160175-ub7s8dlds9qoaubcpk1qjskapulp39uc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
