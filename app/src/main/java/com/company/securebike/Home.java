@@ -1,14 +1,20 @@
 package com.company.securebike;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
+
+    int Permisos_Call = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,4 +57,13 @@ public class Home extends AppCompatActivity {
         intent.putExtra("home", "Hola_6");
         startActivity(intent);
     }
+
+    public void llamar (View v)
+    {
+        Intent intent = new Intent (Intent.ACTION_CALL, Uri.parse("tel:3124142683"));
+        Permisos.requestPermission(this, Manifest.permission.READ_CONTACTS, "", Permisos_Call);
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+            startActivity(intent);
+    }
+
 }

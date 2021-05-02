@@ -6,52 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".MainActivity">
+    tools:context=".Contactos">
 
-    <TextView
-        android:id="@+id/Enunciado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Invite a sus contactos"
-        android:textSize="24sp"
-        />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/Enunciado"
-        android:layout_alignRight="@id/Enunciado"
-        android:src="@drawable/persona"
+        android:layout_width="134dp"
+        android:layout_height="131dp"
+        app:srcCompat="@drawable/contactos"
         />
 
     <EditText
-        android:id="@+id/Texto"
-        android:layout_width="280dp"
-        android:padding="10dp"
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/Enunciado"
-        android:text="Buscar"
+        android:layout_marginLeft="150dp"
+        android:text="Nombre "
         />
 
-    <ListView
-        android:id="@+id/Lista"
-        android:layout_width="wrap_content"
-        android:layout_height="550dp"
-        android:layout_below="@id/Texto"
-        android:entries="@array/contactos" />
+    <EditText
+        android:id="@+id/etNumero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="60dp"
+        android:text="Numero telefonico"
+        />
 
     <Button
-        android:id="@+id/bInvitar"
-        android:layout_width="wrap_content"
+        android:id="@+id/bAgregarSOS"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Invitar"
-        android:layout_below="@id/Lista"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/etNumero"
+        android:layout_marginTop="50dp"
+        android:text="Agregar"
+        android:onClick="agregar"
         />
 
-
-
+    <Button
+        android:id="@+id/bcambiarSOS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bAgregarSOS"
+        android:text="Cambiar"
+        android:onClick="cambiar"
+        />
 
 </RelativeLayout>
