@@ -94,6 +94,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SOS"
+        android:onClick="llamar"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
@@ -146,6 +148,5 @@
         app:layout_constraintVertical_bias="0.970"
         android:onClick="compartir"
         />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,6 +50,7 @@ public class Contactos extends AppCompatActivity {
 
     public void seleccionarContacto ()
     {
+
         Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         startActivityForResult(intent, PICK_CONTACT_INDEX);

@@ -1,14 +1,20 @@
 package com.company.securebike;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
+
+    int Permisos_Call = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,14 +58,12 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void compartir(View v)
+    public void llamar (View v)
     {
-        //Toast.makeText(v.getContext(), "Pasando a registrarse", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
-        String aux = "https://www.youtube.com/watch?v=iuTtlb2COtc&ab_channel=CamiloVEVO";
-        intent.putExtra(Intent.EXTRA_TEXT,aux);
-        startActivity(intent);
+        Intent intent = new Intent (Intent.ACTION_CALL, Uri.parse("tel:3124142683"));
+        Permisos.requestPermission(this, Manifest.permission.READ_CONTACTS, "", Permisos_Call);
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+            startActivity(intent);
     }
+
 }
