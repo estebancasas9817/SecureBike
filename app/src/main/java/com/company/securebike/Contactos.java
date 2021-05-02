@@ -110,7 +110,7 @@ public class Contactos extends AppCompatActivity {
 
                                                                    ContactoAux contactoAux = new ContactoAux(nombreContacto, numeroContacto);
                                                                    databaseReference.child(nombreContacto).setValue(contactoAux);
-                                                                   Intent intent = new Intent(v.getContext(), Home.class);
+                                                                   Intent intent = new Intent(v.getContext(), MapsActivity.class);
                                                                    startActivity(intent);
                                                                }
                                                            }
@@ -138,7 +138,7 @@ public class Contactos extends AppCompatActivity {
 
                     ContactoAux contactoAux = new ContactoAux(nombreContacto, numeroContacto);
                     databaseReference.child(nombreContacto).setValue(contactoAux);
-                    Intent intent = new Intent(v.getContext(), Home.class);
+                    Intent intent = new Intent(v.getContext(), MapsActivity.class);
                     startActivity(intent);
                 }
             }
