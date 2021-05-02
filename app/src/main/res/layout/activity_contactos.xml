@@ -40,6 +40,16 @@
         android:layout_below="@id/etNumero"
         android:layout_marginTop="50dp"
         android:text="Agregar"
+        android:onClick="agregar"
+        />
+
+    <Button
+        android:id="@+id/bcambiarSOS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bAgregarSOS"
+        android:text="Cambiar"
+        android:onClick="cambiar"
         />
 
 </RelativeLayout>

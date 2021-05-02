@@ -16,6 +16,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.company.securebike.auxiliares.ContactoAux;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class Contactos extends AppCompatActivity {
 
@@ -25,6 +32,12 @@ public class Contactos extends AppCompatActivity {
 
     private static final int PICK_CONTACT_INDEX = 1;
     EditText Cnombre, Cnumero;
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    static private String nombreContacto;
+    static private String numeroContacto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +84,70 @@ public class Contactos extends AppCompatActivity {
                     String numero = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                     Cnombre.setText(nombre);
                     Cnumero.setText(numero);
+
+                    nombreContacto = new String(nombre);
+                    numeroContacto = new String(numero);
                 }
 
             }
         }
+    }
+
+    public void agregar(final View v)
+    {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Contactos");
+
+        Query chequearUsuario =databaseReference.orderByChild("contacto");
+        chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener()
+                                                       {
+                                                           @Override
+                                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                               if (snapshot.exists())
+                                                               {
+                                                                   Toast.makeText(v.getContext(), "No se puede tener más de un contacto SOS", Toast.LENGTH_LONG).show();
+                                                               } else {
+
+                                                                   ContactoAux contactoAux = new ContactoAux(nombreContacto, numeroContacto);
+                                                                   databaseReference.child(nombreContacto).setValue(contactoAux);
+                                                                   Intent intent = new Intent(v.getContext(), Home.class);
+                                                                   startActivity(intent);
+                                                               }
+                                                           }
+                                                           @Override
+                                                           public void onCancelled(@NonNull DatabaseError error) {
+
+                                                           }
+                                                       });
+
+    }
+
+    public void cambiar(final View v)
+    {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Contactos");
+
+        Query chequearUsuario =databaseReference.orderByChild("contacto");
+        chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists())
+                {
+                    databaseReference.removeValue();
+
+                    ContactoAux contactoAux = new ContactoAux(nombreContacto, numeroContacto);
+                    databaseReference.child(nombreContacto).setValue(contactoAux);
+                    Intent intent = new Intent(v.getContext(), Home.class);
+                    startActivity(intent);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     @Override
