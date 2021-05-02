@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity {
                                             String direccion = snapshot.child(usuario).child("direccion").getValue(String.class);
                                             String nombre = snapshot.child(usuario).child("nombre").getValue(String.class);
 
-                                            Intent intent = new Intent(Login.this,AgregarBicicleta.class);
+                                            Intent intent = new Intent(Login.this,Home.class);
                                             intent.putExtra("usuario",usuario);
                                             intent.putExtra("nombre",nombre);
                                             intent.putExtra("direccion",direccion);
@@ -126,7 +126,6 @@ public class Login extends AppCompatActivity {
         editText.requestFocus();
     }
 
-
     public void seTeOlvidoLaContraseña(View v)
     {
         Toast.makeText(v.getContext(), "Pasando a restablecer contraseña", Toast.LENGTH_LONG).show();
@@ -134,12 +133,11 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
     public void registrarse(View v)
     {
         Toast.makeText(v.getContext(), "Pasando a registrarse", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(v.getContext(), Registro.class);
         startActivity(intent);
     }
+
 }
