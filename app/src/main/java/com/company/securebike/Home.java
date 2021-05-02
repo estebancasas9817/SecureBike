@@ -51,4 +51,5 @@ public class Home extends AppCompatActivity {
         intent.putExtra("home", "Hola_6");
         startActivity(intent);
     }
+
 }

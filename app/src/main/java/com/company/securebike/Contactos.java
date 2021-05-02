@@ -1,6 +1,7 @@
 package com.company.securebike;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -8,34 +9,34 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class Contactos extends AppCompatActivity {
 
     int Permisos_Read_Contact = 0;
     String[] mProjection;
     Cursor cursor;
-    ContactsAdapter CA;
-    ListView lista;
+
+    private static final int PICK_CONTACT_INDEX = 1;
+    EditText Cnombre, Cnumero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactos);
         Permisos.requestPermission(this, Manifest.permission.READ_CONTACTS, "", Permisos_Read_Contact);
-
-        lista = (ListView)findViewById(R.id.listaContactos);
         mProjection = new String[]{ContactsContract.Profile._ID, ContactsContract.Profile.DISPLAY_NAME_PRIMARY};
-        CA = new ContactsAdapter(this, null, 0);
-        lista.setAdapter(CA);
+        Cnombre = findViewById(R.id.etNombre);
+        Cnumero = findViewById(R.id.etNumero);
 
         initView();
+        seleccionarContacto();
     }
 
     private void initView()
@@ -44,9 +45,35 @@ public class Contactos extends AppCompatActivity {
         if(permiso == PackageManager.PERMISSION_GRANTED)
         {
             cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, mProjection, null, null, null);
-            CA.changeCursor(cursor);
         }
+    }
 
+    public void seleccionarContacto ()
+    {
+        Intent intent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+        intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        startActivityForResult(intent, PICK_CONTACT_INDEX);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_CONTACT_INDEX)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Uri uri = data.getData();
+                cursor = getContentResolver().query(uri, null, null, null, null);
+                if(cursor.moveToFirst())
+                {
+                    String nombre = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                    String numero = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    Cnombre.setText(nombre);
+                    Cnumero.setText(numero);
+                }
+
+            }
+        }
     }
 
     @Override
