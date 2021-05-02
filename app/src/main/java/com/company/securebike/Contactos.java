@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Contactos extends AppCompatActivity {
 
@@ -59,5 +63,16 @@ public class Contactos extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void compartir(View v)
+    {
+        //Toast.makeText(v.getContext(), "Pasando a registrarse", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
+        String aux = "https://www.youtube.com/watch?v=iuTtlb2COtc&ab_channel=CamiloVEVO";
+        intent.putExtra(Intent.EXTRA_TEXT,aux);
+        startActivity(intent);
     }
 }

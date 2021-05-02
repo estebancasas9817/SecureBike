@@ -49,6 +49,7 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginVertical="650dp"
         android:text="Invitar"
+        android:onClick="compartir"
         />
 
 

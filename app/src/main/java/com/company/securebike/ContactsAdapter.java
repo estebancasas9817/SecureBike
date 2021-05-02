@@ -24,10 +24,10 @@ public class ContactsAdapter extends CursorAdapter {
     }
 
     @Override
-
     public void bindView(View view, Context context, Cursor cursor)
     {
         TextView nombreContactos = (TextView)view.findViewById(R.id.nombreContacto);
+
         int id = cursor.getInt(CONTACT_ID_INDEX);
         String nombre = cursor.getString(DISPLAY_NAME_INDEX);
         nombreContactos.setText(nombre);
