@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import com.google.firebase.database.Query;
+
 public class Contactos extends AppCompatActivity {
 
     int Permisos_Read_Contact = 0;
@@ -68,6 +70,7 @@ public class Contactos extends AppCompatActivity {
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         startActivityForResult(intent, PICK_CONTACT_INDEX);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
