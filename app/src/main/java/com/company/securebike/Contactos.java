@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.company.securebike.auxiliares.ContactoAux;
+import com.company.securebike.auxiliares.MyDoes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +34,8 @@ public class Contactos extends AppCompatActivity {
     int Permisos_Read_Contact = 0;
     String[] mProjection;
     Cursor cursor;
-
+    EditText etNombre;
+    EditText etNumero;
     private static final int PICK_CONTACT_INDEX = 1;
     EditText Cnombre, Cnumero;
 
@@ -98,58 +102,60 @@ public class Contactos extends AppCompatActivity {
 
     public void agregar(final View v)
     {
+        Intent intent = getIntent();
+        final String usuario = intent.getStringExtra("usuario");
+        etNombre = findViewById(R.id.etNombre);
+        etNumero = findViewById(R.id.etNumero);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Contactos");
 
-        Query chequearUsuario =databaseReference.orderByChild("contacto");
-        chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener()
-                                                       {
-                                                           @Override
-                                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                               if (snapshot.exists())
-                                                               {
-                                                                   Toast.makeText(v.getContext(), "No se puede tener más de un contacto SOS", Toast.LENGTH_LONG).show();
-                                                               } else {
 
-                                                                   ContactoAux contactoAux = new ContactoAux(nombreContacto, numeroContacto);
-                                                                   databaseReference.child(nombreContacto).setValue(contactoAux);
-                                                                   Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                                                                   startActivity(intent);
-                                                               }
-                                                           }
-                                                           @Override
-                                                           public void onCancelled(@NonNull DatabaseError error) {
 
-                                                           }
-                                                       });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Contactos").child(usuario);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(v.getContext(), "No se puede tener más de un contacto SOS", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(v.getContext(), "ENTRAAA", Toast.LENGTH_LONG).show();
+                    ContactoAux contactoAux = new ContactoAux(etNombre.getText().toString(), etNumero.getText().toString());
+                    databaseReference.setValue(contactoAux);
+                }
+
+//                Intent intent = new Intent(v.getContext(), MapsActivity.class);
+//                startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // set code to show an error
+                Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
     public void cambiar(final View v)
     {
+
+        // SE ESTABAN COMPLICANDO MUCHO CON ESE QUERY!!!! MAS SENCILLO CAMBIARLO ASI.
+
+        Intent intent = getIntent();
+        etNombre = findViewById(R.id.etNombre);
+        etNumero = findViewById(R.id.etNumero);
+        final String usuario = intent.getStringExtra("usuario");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Contactos");
+        databaseReference = firebaseDatabase.getReference("Contactos").child(usuario);
+        final DatabaseReference reference;
+        reference = FirebaseDatabase.getInstance().getReference().child("Contactos").child(usuario);
+        reference.child("nombre").setValue(etNombre.getText().toString());
+        reference.child("numero").setValue(etNumero.getText().toString());
+        Toast.makeText(Contactos.this,"Contacto actualizado....",Toast.LENGTH_LONG).show();
 
-        Query chequearUsuario =databaseReference.orderByChild("contacto");
-        chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists())
-                {
-                    databaseReference.removeValue();
 
-                    ContactoAux contactoAux = new ContactoAux(nombreContacto, numeroContacto);
-                    databaseReference.child(nombreContacto).setValue(contactoAux);
-                    Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                    startActivity(intent);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
     }
 
