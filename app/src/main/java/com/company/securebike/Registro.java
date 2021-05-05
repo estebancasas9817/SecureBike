@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,8 +62,7 @@ public class Registro extends AppCompatActivity {
                 final String dir = direccion.getText().toString();
 
                 if(validarUsuario() && validarNombre() && validarEmail() && validarTel() && validarClave() && validarDireccion()){
-                    UsuarioAux usuarioAux = new UsuarioAux(usuarios,nombres,email,cel,password,dir);
-                    databaseReference.child(usuarios).setValue(usuarioAux);
+
 
                     firebaseAuth = FirebaseAuth.getInstance();
 
@@ -70,8 +70,10 @@ public class Registro extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                UsuarioAux usuarioAux = new UsuarioAux(usuarios,nombres,email,cel,password,dir);
+                                databaseReference.child(usuarios).setValue(usuarioAux);
                                 Toast.makeText(Registro.this,"Usuario Registrado.....",Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Registro.this,AgregarBicicleta.class);
+                                Intent intent = new Intent(Registro.this,Inicio.class);
                                 intent.putExtra("usuario",usuarios);
                                 intent.putExtra("nombre",nombres);
                                 intent.putExtra("direccion",dir);
@@ -82,7 +84,10 @@ public class Registro extends AppCompatActivity {
 
                             }
                             else{
-                                Toast.makeText(Registro.this,"No se pudo registrar... Intente de nuevo",Toast.LENGTH_LONG).show();
+                                task.getResult();
+                                Toast.makeText(Registro.this,task.getResult().toString(),Toast.LENGTH_LONG).show();
+//                                Log.i(task.getResult().toString());
+
                             }
                         }
                     });
@@ -136,6 +141,7 @@ public class Registro extends AppCompatActivity {
             mail.setError("Correo invalido");
             return false;
         }
+
         else{
             mail.setError(null);
             return true;
@@ -160,9 +166,17 @@ public class Registro extends AppCompatActivity {
     private boolean validarClave(){
         String val = clave.getText().toString();
         String valClave = repetirClave.getText().toString();
-
+        Toast.makeText(Registro.this,val.length(),Toast.LENGTH_LONG).show();
         if(val.isEmpty()){
             clave.setError("Este campo no puede estar vacio");
+            return false;
+        }
+        else if(val.length() < 6){
+            clave.setError("La clave debe tener más de 6 caracteres");
+            return false;
+        }
+        else if(val != valClave){
+            clave.setError("La clave no coincide");
             return false;
         }
         else if(valClave.isEmpty()){
