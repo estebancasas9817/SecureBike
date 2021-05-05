@@ -67,8 +67,6 @@ public class Login extends AppCompatActivity {
 
                         Query chequearUsuario =databaseReference.orderByChild("usuario").equalTo(usuario);
 
-
-
                         chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -82,7 +80,7 @@ public class Login extends AppCompatActivity {
                                             String direccion = snapshot.child(usuario).child("direccion").getValue(String.class);
                                             String nombre = snapshot.child(usuario).child("nombre").getValue(String.class);
 
-                                            Intent intent = new Intent(Login.this,Contactos.class);
+                                            Intent intent = new Intent(Login.this, MapsActivity.class);
                                             intent.putExtra("usuario",usuario);
                                             intent.putExtra("nombre",nombre);
                                             intent.putExtra("direccion",direccion);
