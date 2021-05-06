@@ -59,15 +59,20 @@ public class Mapas extends AppCompatActivity implements OnMapReadyCallback, Goog
         setContentView(R.layout.activity_mapas);
         buscar = findViewById(R.id.buscar);
         buscarIcono = findViewById(R.id.buscarIcono);
-
+        floatingActionButton = findViewById(R.id.fab);
         buscarIcono.setOnClickListener(this::geoLocate);
 
 
-
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCurrLoc();
+            }
+        });
         verificarPermisos();
         initMapa();
         mLocationClient = new FusedLocationProviderClient(this);
-        getCurrLoc();
+
 
 
     }

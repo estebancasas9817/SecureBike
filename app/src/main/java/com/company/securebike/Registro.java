@@ -60,8 +60,33 @@ public class Registro extends AppCompatActivity {
                 final String cel = celular.getText().toString();
                 final String password = clave.getText().toString();
                 final String dir = direccion.getText().toString();
+                String valClave = repetirClave.getText().toString();
+                int cantidad = password.length();
+                boolean bandera = false;
+                if (usuarios.isEmpty()){
+                    mostrarError(usuario,"Debes llenar este campo");
+                }
+                if (nombres.isEmpty()){
+                    mostrarError(nombre,"Debes llenar este campo");
+                }
+                if (email.isEmpty()){
+                    mostrarError(mail,"Debes llenar este campo");
+                }
+                if (cel.isEmpty()){
+                    mostrarError(celular,"Debes llenar este campo");
+                }
+                if (password.isEmpty()){
+                    mostrarError(clave,"Debes llenar este campo");
+                }
+                if (dir.isEmpty()){
+                    mostrarError(direccion,"Debes llenar este campo");
+                }
 
-                if(validarUsuario() && validarNombre() && validarEmail() && validarTel() && validarClave() && validarDireccion()){
+                else{
+                    bandera = true;
+                }
+
+                if(bandera == true){
 
 
                     firebaseAuth = FirebaseAuth.getInstance();
@@ -110,6 +135,11 @@ public class Registro extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void mostrarError(EditText editText, String error){
+        editText.setError(error);
+        editText.requestFocus();
     }
 
     private boolean validarUsuario(){
