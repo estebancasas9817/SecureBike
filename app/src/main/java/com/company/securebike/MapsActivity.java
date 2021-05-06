@@ -152,8 +152,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         initView();
 
-        Button buttonConf = (Button) findViewById(R.id.b1);
-        Button buttonCont = (Button) findViewById(R.id.b3);
 
         geocoder = new Geocoder(this);
         address = findViewById(R.id.texto);
@@ -199,13 +197,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        buttonConf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentWeb = new Intent(v.getContext(), Configuracion.class);
-                startActivity(intentWeb);
-            }
-        });
+
     }
 
     /**
@@ -246,17 +238,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-    }
-
-    public void compartir(View v)
-    {
-        //Toast.makeText(v.getContext(), "Pasando a registrarse", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
-        String aux = "https://www.youtube.com/watch?v=iuTtlb2COtc&ab_channel=CamiloVEVO";
-        intent.putExtra(Intent.EXTRA_TEXT,aux);
-        startActivity(intent);
     }
 
 
@@ -408,38 +389,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    public void contactos(View v)
-    {
-        Toast.makeText(v.getContext(), "Tus contactos", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(v.getContext(), Contactos.class);
-        intent.putExtra("login", "Hola_4");
-        startActivity(intent);
-    }
 
-    public void agregarBicicleta(View v)
-    {
-        Toast.makeText(v.getContext(), "Pasando a agregar bicicleta", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(v.getContext(), AgregarBicicleta.class);
-        intent.putExtra("home", "Hola_5");
-        startActivity(intent);
-    }
 
-    public void configurarBicicleta(View v)
-    {
-        Toast.makeText(v.getContext(), "Pasando a configurar bicicleta", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(v.getContext(), ConfiguracionBicicleta.class);
-        intent.putExtra("home", "Hola_6");
-        startActivity(intent);
-    }
-
-    public void llamar (View v)
-    {
-        Intent intent = new Intent (Intent.ACTION_CALL, Uri.parse("tel:3124142683"));
-        Permisos.requestPermission(this, Manifest.permission.READ_CONTACTS, "", Permisos_Call);
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
-            startActivity(intent);
-
-    }
 
     private void startLocationUpdates()
     {
