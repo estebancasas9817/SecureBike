@@ -12,8 +12,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.company.securebike.auxiliares.ContactoAux;
+import com.company.securebike.auxiliares.MyDoes;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +29,7 @@ public class Inicio extends AppCompatActivity {
 
     ImageView verMapa,configuracion,sos,invitacion,bicicletas,contactos;
     int Permisos_Call = 0;
-
+    DatabaseReference reference;
     String usuario;
     String email;
     String clave;
@@ -117,51 +119,78 @@ public class Inicio extends AppCompatActivity {
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference = firebaseDatabase.getReference("Contactos");
 
-                Query chequearUsuario = databaseReference.orderByChild("contacto");
-                chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener() {
+                reference = FirebaseDatabase.getInstance().getReference().child("Contactos").child(usuario);
+                reference.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            setTelefono(snapshot.getChildren().iterator().next().getValue(ContactoAux.class).getNumero());
+                    public void onDataChange(DataSnapshot dataSnapshot){
+                        if (dataSnapshot.exists()) {
+
+                            String tel = dataSnapshot.child("numero").getValue(String.class);
+
+                            setTelefono(dataSnapshot.child(usuario).child("numero").getValue(String.class));
+
+                            if(tel.length() > 10)
+                            {
+                                try {
+                                    int n = 3;
+                                    String telaux = new String();
+                                    while(n < getTelefono().length())
+                                    {
+                                        telaux = telaux + getTelefono().charAt(n);
+                                        n++;
+                                    }
+                                    StringTokenizer linea = new StringTokenizer(telaux," ");
+                                    String telDefinitivo = new String();
+
+                                    while(linea.hasMoreTokens())
+                                    {
+                                        telDefinitivo = telDefinitivo + linea.nextToken().toString();
+                                    }
+
+                                    System.out.println(telDefinitivo);
+                                    setTelefono(telDefinitivo);
+
+                                }catch (Exception e)
+                                {
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+
+                            Intent intent = new Intent (Intent.ACTION_CALL, Uri.parse("tel:"+tel));
+                            Permisos.requestPermission(Inicio.this, Manifest.permission.CALL_PHONE, "", Permisos_Call);
+                            if(ActivityCompat.checkSelfPermission(Inicio.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                                startActivity(intent);
+                            }
                         }
+
+
                     }
+
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                    public void onCancelled(DatabaseError databaseError) {
+                        // set code to show an error
+                        Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                if(getTelefono().length() > 10)
-                {
-                    try {
-                        int n = 3;
-                        String telaux = new String();
-                        while(n < getTelefono().length())
-                        {
-                            telaux = telaux + getTelefono().charAt(n);
-                            n++;
-                        }
-                        StringTokenizer linea = new StringTokenizer(telaux," ");
-                        String telDefinitivo = new String();
+//                Query chequearUsuario = databaseReference.orderByChild("aaa");
+//                chequearUsuario.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()) {
+//                            Toast.makeText(Inicio.this,"ENTRAAAAA",Toast.LENGTH_LONG).show();
+////                            String tel = snapshot.child("numero").getValue(String.class);
+//
+//                            setTelefono(snapshot.getChildren().iterator().next().getValue(ContactoAux.class).getNumero());
+//                            Toast.makeText(Inicio.this,getTelefono(),Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//                    }
+//                });
 
-                        while(linea.hasMoreTokens())
-                        {
-                            telDefinitivo = telDefinitivo + linea.nextToken().toString();
-                        }
 
-                        System.out.println(telDefinitivo);
-                        setTelefono(telDefinitivo);
-
-                    }catch (Exception e)
-                    {
-                        System.out.println(e.getMessage());
-                    }
-                }
-
-                Intent intent = new Intent (Intent.ACTION_CALL, Uri.parse("tel:"+getTelefono()));
-                Permisos.requestPermission(Inicio.this, Manifest.permission.CALL_PHONE, "", Permisos_Call);
-                if(ActivityCompat.checkSelfPermission(Inicio.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                    startActivity(intent);
-                }
 
             }
         });
