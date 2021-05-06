@@ -108,9 +108,6 @@ public class Contactos extends AppCompatActivity {
         etNumero = findViewById(R.id.etNumero);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Contactos").child(usuario);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

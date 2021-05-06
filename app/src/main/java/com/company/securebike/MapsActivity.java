@@ -259,6 +259,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(intent);
     }
 
+
     private void getRoute(Double latitude1,Double longitude1,Double latitude2,Double longitude2) {
 
         String origen = latitude1.toString()+","+longitude1.toString();
@@ -437,6 +438,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Permisos.requestPermission(this, Manifest.permission.READ_CONTACTS, "", Permisos_Call);
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
             startActivity(intent);
+
     }
 
     private void startLocationUpdates()
