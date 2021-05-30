@@ -182,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     Double longitude1 = buscarLocation.getPosition().longitude;
                                     Double longitude2 = locacionActual.getPosition().longitude;
                                     Toast.makeText(MapsActivity.this, "La distancia es: " + distance(latitude1, longitude1, latitude2, longitude2) + " Km", Toast.LENGTH_SHORT).show();
-
+                                    getRoute(latitude2,longitude2,latitude1,longitude1);
 
                                 }
                             } else {
@@ -234,7 +234,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Double longitude1 = buscarLocation.getPosition().longitude;
                 Double longitude2 = locacionActual.getPosition().longitude;
                 Toast.makeText(MapsActivity.this, "La distancia es: " + distance(latitude1, longitude1, latitude2, longitude2) + " Km", Toast.LENGTH_SHORT).show();
-
+                getRoute(latitude2,longitude2,latitude1,longitude1);
             }
         });
 
@@ -301,7 +301,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Draw the polyline
         if (path.size() > 0) {
-            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.RED).width(5);
+            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.BLACK).width(5);
             mMap.addPolyline(opts);
         }
     }
@@ -414,4 +414,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
 
+    public void onTaskDone(Object... values) {
+        if (currentPolyline != null)
+            currentPolyline.remove();
+        currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
+    }
 }

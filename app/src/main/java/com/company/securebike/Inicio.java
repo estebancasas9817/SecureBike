@@ -66,7 +66,8 @@ public class Inicio extends AppCompatActivity {
         verMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Inicio.this,Mapas.class);
+
+                Intent intent = new Intent(Inicio.this,MapsActivity.class);
                 startActivity(intent);
             }
         });
