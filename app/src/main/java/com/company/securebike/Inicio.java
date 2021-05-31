@@ -203,7 +203,7 @@ public class Inicio extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
-                String aux = "https://www.youtube.com/watch?v=iuTtlb2COtc&ab_channel=CamiloVEVO";
+                String aux = "https://drive.google.com/file/d/12Yb4qw8zT_rYXVw05qYD-UTgKVh8Iust/view?usp=sharing";
                 intent.putExtra(Intent.EXTRA_TEXT,aux);
                 startActivity(intent);
 
