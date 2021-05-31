@@ -2,9 +2,14 @@ package com.company.securebike;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.IntentSender;
 import android.graphics.Color;
@@ -17,6 +22,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -97,6 +103,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker buscarLocation;
     private Polyline currentPolyline;
     private GoogleMap mMap;
+    private static String CHANNEL_ID = "Notificacion";
+    private int notificationId = 01;
 
     String permLocation = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final int LOCATION_PERMISSION_ID = 15;
@@ -111,6 +119,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        lightSensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (mMap != null) {
+                    if (event.values[0] < 5000) {
+                        System.out.println("Valor:" + event.values[0]);
+                        Log.i("MAPS", "DARK MAP " + event.values[0]);
+                        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.dark_style_map));
+                    } if(event.values[0] >= 5000) {
+                        System.out.println("Valor luminoso:" + event.values[0]);
+                        Log.i("MAPS", "LIGHT MAP " + event.values[0]);
+                        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapsActivity.this, R.raw.light_style_map));
+                    }
+                }
+            }
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+        };
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -139,8 +169,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         };
 
-
-
         int permissionLocation1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         int permissionLocation2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -151,7 +179,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         initView();
-
 
         geocoder = new Geocoder(this);
         address = findViewById(R.id.texto);
@@ -198,6 +225,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        sensorManager.registerListener(lightSensorListener, lightSensor,
+                SensorManager.SENSOR_DELAY_NORMAL);
+        startLocationUpdates();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        sensorManager.unregisterListener(lightSensorListener);
+        stopLocationUpdates();
     }
 
     /**
@@ -293,7 +335,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 }
             }
-
+            createNotificationChannel();
+            crearNotificacion();
         }catch (Exception e){
             e.printStackTrace();
             Log.i("DIRECCION",e.getMessage());
@@ -305,6 +348,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addPolyline(opts);
         }
     }
+    private void createNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Notificacion";
+            String description = "channel description";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void crearNotificacion(){
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        mBuilder.setSmallIcon(R.drawable.noticon);
+        mBuilder.setContentTitle("Notificacion");
+        mBuilder.setContentText("Tu ruta ha sido calculada.");
+        mBuilder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        Intent intent = new Intent(this, Home.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(notificationId, mBuilder.build());
+    }
 
     private void gotoLocation(double latitude, double longitude) {
         LatLng latlng = new LatLng(latitude, longitude);
@@ -313,20 +387,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(cameraUpdate);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-    }
-
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        startLocationUpdates();
-    }
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        stopLocationUpdates();
     }
 
     private void initView(){
